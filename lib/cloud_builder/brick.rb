@@ -14,7 +14,9 @@ module CloudBuilder
       @hash = DSLOpenStruct.new(hash)
       
       filename = "%s/bricks/%s.rb" % [ @stack.dirname, @type.to_s ]
-      instance_eval File.read(filename), filename
+      if File.exists? filename
+        instance_eval File.read(filename), filename
+      end
     end
 
     def brick 
